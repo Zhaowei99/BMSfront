@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title><IMS:paramOut paramKey="shop_sys_title" /></title>
+<link rel="shortcut icon"
+	href="static/common/images/favicon.ico" />
+<link href="static/shop/css/shop.css" rel="stylesheet"
+	type="text/css" />
+</head>
+
+<body>
+	<div class="layui-layout layui-layout-admin">
+		<div class="layui-header" style="background-color: #f7b824;">
+			<!-- logo区域 -->
+			<div class="layui-logo-box">
+				<a class="logo" href="http://jqadmin.jqcool.net" title="美研社"></a>
+			</div>
+
+			<!-- 主菜单区域 -->
+			<div class="layui-main-menu">
+				<ul class="layui-nav clearfix" id="menu" lay-filter="main-menu">
+							<li class="layui-nav-item"><a href="javascript:void(0)"
+								onclick="return false;" class="menuTab"
+								data-id="menu${status.index + 1}" data-title="${menu.menu_name}"
+								data-href="${ctx }/${menu.url }" data-type="tabAdd">${menu.menu_name}</a></li>
+				</ul>
+			</div>
+		</div>
+
+</body>
+
+</html>
