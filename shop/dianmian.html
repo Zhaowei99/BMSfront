@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- META DATA -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<!-- Font Awesome -->
+<link rel="stylesheet" type="text/css" href="../static/cpts_1781_cqm/css/font-awesome.min.css" />
+<!-- Main Style -->
+<link rel="stylesheet" type="text/css" href="../static/cpts_1781_cqm/css/style.css">
+<!-- Responsive -->
+<link rel="stylesheet" type="text/css" href="../static/cpts_1781_cqm/css/responsive.css">
+<!-- PrettyPhoto -->
+<link rel="stylesheet" type="text/css" href="../static/cpts_1781_cqm/css/prettyPhoto.css">
+<!-- Fancybox -->
+<link href="../static/cpts_1781_cqm/css/jquery.fancybox.css" rel="stylesheet" type="text/css" media="screen">
+<link rel="stylesheet" href="../static/easyui/easyui.css" />
+<link rel="stylesheet" href="../static/easyui/icon.css"/> 
+<script type="text/javascript" src="../static/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../static/easyui/jquery.min.js"></script>
+</head>
+<body class="index page-index">
+<div id="site-holder">
+	<div id="flip" class="container" data-attr-page="0">
+		<!-- START WELCOME SECTION -->
+		<div class="f-page yellow-bkg active" id="screen-welcome">
+			<div id="debugger">
+			</div>
+			<!-- PRELOADER -->
+			<div id="content-loader-holder">
+				<div id="content-loader">
+					<div class="ss-preloader-spin">
+					</div>
+				</div>
+			</div>
+			<!-- END PRELOADER -->
+			<div class="g-screen fixed-screen">
+				<!-- START HEADER -->
+			<header class="site-header yellow">
+					<span class="nav-trigger">
+						<span class="nav-trigger-inside">
+						<span class="nav-trigger-line"></span>
+					</span>
+				</span>
+			<nav class="site-menu">
+				<a href="#" class="active" onclick="will('商品类型','test.html',this)">我的店铺</a>
+				<a href="#" onclick="will('商品类型','test.html',this)" > 营业记录</a>
+				<a href="#portfolio">预约管理</a>
+				<a href="#team">顾客管理</a>
+				<a href="#sdf">护理管理</a>   
+				<a href="#talk-to-s" style="opacity: 1;">员工管理</a>  
+				<a href="#talk-o-us" style="opacity: 1;">财务管理</a>  
+				<a href="#talk-t-us" style="opacity: 1;">店铺管理</a>  
+			</nav>
+			<div id="tabs" class="easyui-tabs" style="width:100%;height:100%;">
+					<iframe src="yingye.html"  scrolling="auto" frameborder="0"  style="width:100%;height:615px;"></iframe>
+			</div>
+		</header>
+				<div class="flubber">
+					<div id="flubber" class="flubber-guy">
+						<div class="flubber-eyes">
+						</div>
+					</div>
+					<ul class="flubber-quote">
+						<li>早上好!</li>
+						<li>我叫小蜂蜜</li>
+						<li>欢迎来到美研社</li>
+						<li>很高兴为你服务</li>
+						<li>我的店铺会查询你本店信息</li>
+						<li>开始扫描</li>
+						<li>扫描失败</li>
+					</ul>
+				</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="../static/cpts_1781_cqm/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="../static/cpts_1781_cqm/js/mobicom.custom.js"></script>
+<script>
+	function will(text,url,obj){
+				$(obj).prevAll().removeClass()
+				$(obj).nextAll().removeClass();
+				$(obj).addClass("active")
+				var content = '<iframe scrolling="auto" frameborder="0"  src="'+url+'" style="width:100%;height:615px;"></iframe>';
+				$("#tabs").empty()
+		       	$('#tabs').append(content)
+				
+		    		
+		}
+</script>
+</body>
+</html>

@@ -36,8 +36,7 @@
 			$.messager.alert('警告信息', '用户密码不能为空，请输入', 'warning');
 			return;
 		}
-		$
-				.ajax({
+		$.ajax({
 					type : 'post',
 					url : '${ctx}/system/login/doLogin.jhtml',
 					data : {
