@@ -1,58 +1,51 @@
 <!DOCTYPE html>
 <html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-
 <head>
-<title><IMS:paramOut paramKey="shop_sys_title" /></title>
-<link rel="shortcut icon"
-	href="static/common/images/favicon.ico" />
-<link href="static/shop/css/shop.css" rel="stylesheet"
-	type="text/css" />
-
+	<meta charset="UTF-8">
+	<title>Complex Layout - jQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="../static/easyui/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../static/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../static/easyui/demo.css">
+	<script type="text/javascript" src="../static/easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="../static/easyui/jquery.easyui.min.js"></script>
 </head>
-	<body>
-		
-		
-		<div class="layui-layout layui-layout-admin">
-		<div class="layui-header" style="background-color: #f7b824;">
-			<!-- logo区域 -->
-			<div class="layui-logo-box">
-				<a class="logo" href="http://jqadmin.jqcool.net" title="美研社"></a>
-			</div>
-
-			<!-- 主菜单区域 -->
-			<div class="layui-main-menu">
-				<ul class="layui-nav clearfix" id="menu" lay-filter="main-menu">
-					<c:forEach var="menu" items="${grantMenuList}" varStatus="status">
-						<c:if test="${menu.parent_id!='0' }">
-							<li class="layui-nav-item"><a href="javascript:void(0)"
-								onclick="return false;" class="menuTab"
-								data-id="menu${status.index + 1}" data-title="${menu.menu_name}"
-								data-href="${ctx }/${menu.url }" data-type="tabAdd">${menu.menu_name}</a></li>
-
-						</c:if>
-					</c:forEach>
-				</ul>
-			</div>
-			<!-- 头部右侧导航 -->
-			<div class="header-right">
-			<ul class="layui-nav">
-			<li class="layui-nav-item"><a href="javascript:void(0)">
-			          
-						<i class="layui-icon" style="position: relative;">&#xe612;</i>
-						${shopUserInfo.account}(${shopUserInfo.username})
-						</a>
-						<dl class="layui-nav-child">
-					      <dd><a href="${ctx}/shop/login/goModifyUserPassword.jhtml" data-toggle="ajax" data-width="500" data-height="280" data-title="修改密码">修改密码</a></dd>
-					      <c:if test="${shopUserInfo.user_type=='1'}">
-					      <dd><a onclick="backIndex()">返回首页</a></dd>
-					      </c:if>
-					      <dd><a onclick="exit()">退出系统</a></dd>
-					    </dl>
-					</li>
-				</ul>
-				
+<body class="overflow: hidden;">
+	<div class="easyui-layout"  style="width:100%;height:600px;">
+		<div data-options="region:'north'" style="height:50px">123</div>
+		<div data-options="region:'south',split:true" style="height:0px;">123</div>
+		<div data-options="region:'west',split:true" title="功能菜单" style="width:200px;">
+			<div class="easyui-accordion" data-options="fit:true,border:false">
+				<div title="Title1" style="padding:10px;" data-options="selected:true">
+					<a href="1"> 点一下</a>
+				</div>
+				<div title="Title2"  style="padding:10px;">
+					content2
+				</div>
+				<div title="Title3" style="padding:10px">
+					content3
+				</div>
 			</div>
 		</div>
-	</body>
+		<div data-options="region:'center',title:'Main Title',iconCls:'icon-ok'">
+			<div class="easyui-tabs" data-options="fit:true,border:false,plain:true">
+				<div title="About" data-options="href:'_content.html'" style="padding:10px"></div>
+				<div title="DataGrid" style="padding:5px">
+					<table class="easyui-datagrid"
+							data-options="url:'datagrid_data1.json',method:'get',singleSelect:true,fit:true,fitColumns:true">
+						<thead>
+							<tr>
+								<th data-options="field:'itemid'" width="80">Item ID</th>
+								<th data-options="field:'productid'" width="100">Product ID</th>
+								<th data-options="field:'listprice',align:'right'" width="80">List Price</th>
+								<th data-options="field:'unitcost',align:'right'" width="80">Unit Cost</th>
+								<th data-options="field:'attr1'" width="150">Attribute</th>
+								<th data-options="field:'status',align:'center'" width="50">Status</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
 </html>
