@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../static/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="../static/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" />
+		<script type="text/javascript" src="../static/bootstrap-3.3.7-dist/js/jquery-3.0.0.js"></script>
+		<script type="text/javascript" src="../static/bootstrap-3.3.7-dist/js/bootstrap.min.js" ></script>
+		
+	</head>
+	<body style="padding:5px;">
+
+	<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" style="width:1200px" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+         		<ul class="nav nav-tabs">
+				   <li class="active"><a href="#home" data-toggle="tab">首页</a></li>
+				   <li><a href="#profile" data-toggle="tab">最新</a></li>
+				   <li><a href="#message" data-toggle="tab">热门</a></li>
+				   <li><a href="#settings" data-toggle="tab">排行</a></li>
+			    </ul>
+				
+				<div class="tab-content">
+					<div class="tab-pane active" id="home">
+						<p> 我是首页</p>
+					</div>
+					<div class="tab-pane" id="profile">
+						<p> 我是最新 </p>
+					</div>
+					<div class="tab-pane" id="message">
+						<p>我是热门</p>
+						<iframe src="merents.html?user_id=cb33c25f5c664058a111a9b876152317"  scrolling="auto" frameborder="0"  style="width:100%;height: 615px;"></iframe>
+					</div>
+					<div class="tab-pane" id="settings">
+						<p>我是排行</p>
+					</div>
+				</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>

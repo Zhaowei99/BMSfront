@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../static/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../static/bootstrap-3.3.7-dist/css/bootstrap-table.min.css" />
+		<link  rel="stylesheet" href="cpts_1683_cpw/css/font-awesome.css" />
+		<link rel="stylesheet" href="cpts_1683_cpw/css/style.css" />
+		<script src="../static/bootstrap-3.3.7-dist/js/jquery-3.0.0.js"></script>
+		<script src="../static/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+		<script type="text/javascript" src="../static/bootstrap-3.3.7-dist/js/bootstrap-table.js" ></script>
+		<script type="text/javascript" charset="utf-8" src="../static/utf8-jsp/ueditor.config.js"></script>
+		<script type="text/javascript" charset="utf-8" src="../static/utf8-jsp/ueditor.all.min.js"> </script>
+		<script type="text/javascript" charset="utf-8" src="../static/utf8-jsp/lang/zh-cn/zh-cn.js"></script>
+	</head>
+	<body >
+			<div  id="toolbar" >
+				<table table-layout=fixed; width="100%" style="height: 150px;">
+				<tr>
+					<td><label>店铺编号:</label></td>
+					<td>
+					    <input type="text" class="form-control" name="shop_id"  placeholder="店铺编号">
+					</td>
+					<td><label>店铺名称:</label></td>
+					<td>
+					    <input type="text" class="form-control" name="shop_name" placeholder="店铺名称">
+					</td>
+					<td><label>状态:</label></td>
+					<td>
+					    
+					   	<select class="form-control" name="show_status">
+					   		<option value="">--请选择--</option>
+					   		<option value="0">禁用</option>
+					   		<option value="1">启用</option>
+					   	</select>  	
+					</td>
+					  <td rowspan="2">
+					  	<div class="hvr-icon-spin btn btn-success" id="selectmer" >
+					  		查询
+					  	</div>
+					  </td>
+				</tr>
+				<tr>
+					<td><label >账户账号:</label></td>
+					<td>
+					    <input type="text" class="form-control" name="account"  placeholder="账户账号">
+					</td>
+					<td><label >店铺简称:</label></td>
+					<td>
+					    <input type="text" class="form-control"  name="short_name" placeholder="店铺简称">
+					</td>
+					<td><label>营业执照号:</label></td>
+					<td>
+					    <input type="text" class="form-control" name="shop_license"  placeholder="营业执照号">
+					 </td>
+				</tr>
+				<tr>
+					<td colspan="7">
+						<table>
+							<tr>
+								<td>
+									<div id="butfat" class="fa fa-share-alt btn">
+								</div>
+								</td>
+								<td>
+									<div id="hidhow" hidden="hidden">
+										<font data-toggle="modal" data-target="#myModal">
+												<p id="insertbishop" class="btn hvr-icon-float-away btn-success btn-xs"  data-toggle="tooltip" data-placement="top" title="数据记得添加完整">添加</p>
+										</font>
+										
+										<font data-toggle="modal" data-target="#myModal">
+										<p id="selectid" class="btn hvr-icon-rotate btn-warning btn-xs" data-toggle="tooltip" data-placement="top" title="真的需要修改吗" >修改</p>
+										</font>
+										<p class="btn hvr-icon-pulse  btn-info btn-xs"  data-toggle="tooltip" data-placement="top" title="可以查询具体信息 ">查询详情</p>
+										<p class="btn hvr-icon-sink-away btn-danger btn-xs"  data-toggle="tooltip" data-placement="top" title="小心点删除">删除</p>
+										
+									</div>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+			</div>	
+			<table id="tableok" 
+					data-toggle="table" 
+					data-method="post" 
+					data-toolbar="#toolbar"
+					 data-query-params="queryParams" 
+					 data-pagination="true"
+					 data-page-size="8"
+					 data-url="http://localhost:8080/merchatcs/select">
+				<thead>
+				<tr>
+					<th data_field="shop_id" data-checkbox="true"></th>
+					<th data-field="shop_id" data-sortable="true">店铺编号</th>
+					<th data-field="shop_name">店铺名称</th>
+					<th data-field="short_name">店铺简称</th>
+					<th data-field="account">店主账号</th>
+					<th data-field="username">店铺法人</th>
+					<th data-field="shop_license">营业执照号</th>
+					<th data-field="shop_phone">店铺电话</th>
+					<th data-field="show_status"  data-formatter="changeSex">状态</th>
+					<th data-field="sort_no">排序号</th>
+					<th data-field="create_time">更新时间</th>
+				</tr>
+			</thead >
+			<tbody style="font-size: 10px;">
+				
+			</tbody>
+		</table>
+		<div class="modal fade"  id="myModal" tabindex="-1"  role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg"  role="document">
+    <div  class="modal-content">
+      <div  class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">商家信息录入</h4>
+      </div>
+      <div class="modal-body">
+      	<form class="form-inline" method="post" enctype="multipart/form-data"  id="sfrm">
+      		<input type="hidden" name="shop_id" />
+       <table class="table">
+       		<tr>
+       			<td>店主账号</td>
+       			<td>
+					<select class="form-control" name="account" style="width: 150px;">
+						
+					</select>
+       			</td>
+       			<td>状态</td>
+       			<td>
+       				<select class="form-control" name="show_status" style="width: 150px;">
+					   		<option value="0">禁用</option>
+					   		<option value="1">启用</option>
+					</select>
+       			</td>
+       		</tr>
+       		<tr>
+       			<td>店铺名称</td>
+       			<td>
+       				<input type="text"  class="form-control" name="shop_name"><em style="color: red;">*</em></td>
+       			<td>店铺简称</td>
+       			<td>
+       				<input type="text"  class="form-control" name="short_name"><em style="color: red;">*</em>
+       			</td>
+       		</tr>
+       		<tr>
+       			<td>月目标现金收入</td>
+       			<td>
+       				<input type="text"  class="form-control" name="month_cash_in"><em style="color: red;">*</em></td>
+       			<td>月目标消耗收入</td>
+       			<td>
+       				<input type="text"  class="form-control" name="month_expend_in"><em style="color: red;">*</em>
+       			</td>
+       		</tr>
+       		<tr>
+       			<td>店铺标志</td>
+       			<td>
+       				
+       					<div id="shopimageshow">
+       						
+       					</div>
+						    <div class="input-group">
+						       <input id='location' style="height: 28px;" class="form-control" onclick="$('#i-file').click();">
+						           <label class="input-group-btn">
+						               <input type="button" id="i-check" value="上传标志" class="btn btn-primary btn-sm" onclick="$('#i-file').click();">
+						           </label>
+						       </div>
+						   <input type="file"  id='i-file' name="shop_image" multiple="multiple"  onchange="$('#location').val($('#i-file').val());" style="display: none">
+				</td>
+       			<td>店铺封面图</td>
+       			<td>
+       					<div id="shopdetailimage">
+       						
+       					</div>
+       				  <div class="input-group">
+						       <input id='location1' style="height: 28px;" class="form-control" onclick="$('#i-file1').click();">
+						           <label class="input-group-btn">
+						               <input type="button"  value="上传封面图" class="btn btn-primary btn-sm" onclick="$('#i-file1').click();">
+						           </label>
+						       </div>
+						   <input type="file"  id='i-file1' name="shop_detail_image"  onchange="$('#location1').val($('#i-file1').val());" style="display: none">
+       			</td>
+       		</tr>
+       		<tr>
+       			<td>营业执照号</td>
+       			<td>
+       				<input type="text"  class="form-control" name="shop_license"><em style="color: red;">*</em> </td>
+       			<td>营业时间:</td>
+       			<td>
+       					<div class="fa fa-eye"></div>
+						<input type="time" value="09:00"  name="begin_time" class="form-control"/>——
+						<div class="fa fa-eye-slash"></div>
+						<input type="time" value="21:00" name="end_time"  class="form-control"/>
+						
+       			</td>
+       		</tr>
+       		<tr>
+       			<td>店铺面积</td>
+       			<td>
+       				<input type="text"  class="form-control" name="shop_area">m2 <em style="color: red;">*</em> </td>
+       			<td>主营项目:</td>
+       			<td>
+       				<input type="text"  class="form-control" name="shop_project"><em style="color: red;">*</em>
+       			</td>
+       		</tr>
+       		<tr>
+       			<td>店铺类型</td>
+       			<td>
+       				<select class="form-control" name="shop_type" style="width: 150px;">
+					   		<option value="美容">美容</option>
+					   		<option value="护理">护理</option>
+					   	</select>  
+       			</td>
+       			<td>排序号:</td>
+       			<td>
+       				<input type="number" name="sort_no"  class="form-control"><em style="color: red;">*</em>
+       			</td>
+       		</tr>
+       		<tr>
+       			<td>店铺电话:</td>
+       			<td>
+       				<input type="text"  class="form-control" name="shop_phone"><em style="color: red;">*</em></td>
+       			<td>店铺地址:</td>
+       			<td>
+       				<input type="text"  class="form-control" name="shop_address"><em style="color: red;">*</em>
+       			</td>
+       		</tr>
+       		<tr>
+       			<td>地址X坐标</td>
+       			<td>
+       				<input type="text"  class="form-control" name="gps_x" ><em style="color: red;">*</em> </td>
+       			<td>地址Y坐标:</td>
+       			<td>
+       				<input type="text"  class="form-control" name="gps_y"><em style="color: red;">*</em>
+       			</td>
+       		</tr>
+       		<tr>
+       			<td>备注</td>
+       			<td colspan="3">
+       				<textarea rows="3" cols="100" class="form-control" name="shop_remark"></textarea>
+       			</td>
+       		</tr>
+       		<tr>
+       			<td>店铺介绍</td>
+       			<td colspan="3" >
+       				<div>
+    					<script id="editor" type="text/plain"   style="width:750px;height:400px;"></script>
+					</div>
+       			</td>
+       		</tr>
+       </table>
+       <input type="hidden" name="user_id" />
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" id="baocun">保存</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+		<script>
+			ue_s = UE.getEditor('editor', { zIndex: 1500})
+			
+			String.prototype.getQueryString = function(name){
+				var reg = new RegExp("(^|&|\\?)"+ name +"=([^&]*)(&|$)"), r;
+				if (r=this.match(reg)) return unescape(r[2]);
+				return null;
+			};
+			$("[name=user_id]").val(location.search.getQueryString("user_id"));
+				$(function(){
+				var i=0;
+				$("#butfat").on("click",function(){
+					if(i==0){
+						$("#hidhow").show();
+						i=1;
+					}else{
+						i=0;
+						$("#hidhow").hide();
+					}
+					
+				})
+				selectaccount();//店主账号下拉框
+  				$('[data-toggle="tooltip"]').tooltip()
+  					
+  				
+				$("#selectmer").on('click', function() {
+					$("#tableok").bootstrapTable('refresh')
+				});
+				
+				$("#insertbishop").on("click",function(){//点击添加页面
+					$("#sfrm")[0].reset();//添加之前清楚之前输入或修改的值
+					ue_s.setContent("")
+					$("#sfrm #shopimageshow").empty()
+					$("#sfrm #shopdetailimage").empty()
+					$("#sfrm [name=shop_id]").val("");
+				})
+				
+				$("#baocun").on("click",function(){
+					if($("#sfrm [name=shop_id]").val()>1){
+						updateshop()
+					}else{
+						insert()
+					}
+				})
+				
+				$("#selectid").on("click",function(){//修改之前的赋值
+					var checkedItems = $("#tableok").bootstrapTable('getAllSelections');
+					var i=0;
+					var itemshop;
+					$.each(checkedItems, function(index, item) {
+						i++;
+						itemshop=item.shop_id
+					});
+					if(i==0){
+						alert("请选择要修改的商家");
+						return false;
+					}
+					if(i>1){
+						alert("一次只能修改一个商家")
+						return false;
+					}
+					selectshopid(itemshop);
+				})
+				
+			})
+			function changeSex(value, row) {
+				value = value == '0' ? "禁用" : "启用";
+				return value;
+				}
+	
+			function queryParams(params) {
+					$('#toolbar').find("[type=text]").each(function() {
+						params[$(this).attr('name')] = $(this).val();
+					});
+					params.show_status=$("[name=show_status]").val()
+					return params;
+			}
+			
+			function insert(){
+				var fornum=new FormData($("#sfrm")[0]);
+				$.ajax({
+						 url:"http://localhost:8080/merchatcs/insert",
+						 type:"post",
+						 data:fornum,
+						 processData: false,
+						 contentType:false,
+						 success: function(data){
+							if(parseInt(data)>0){
+								alert("添加成功")
+							}
+						 },
+						error :function(){
+							alert("请求错误");
+						}
+				 }) 
+			}
+			function selectaccount(){
+				$.ajax({
+						 url:"http://localhost:8080/merchatcs/selectaccount",
+						 type:"get",
+						 data:{},
+						 datatype:"json",
+						 success: function(data){
+							$.each(data, function(index,p) {
+								$("[name=account]").append(`<option value=${p.shop_user_id}>${p.account}</option>`)
+							});
+							
+						 },
+						error :function(){
+							alert("请求错误");
+						}
+				 }) 
+			}
+			
+			function selectshopid(id)
+			{
+				$.ajax({
+						 url:"http://localhost:8080/merchatcs/selectid",
+						 type:"get",
+						 data:{id:id},
+						 datatype:"json",
+						 success: function(data){
+						 	$("#sfrm [name=account]").val(data.owner_id)
+							$("#sfrm [name=show_status]").val(data.show_status)
+							$("#sfrm [name=shop_name]").val(data.shop_name)
+							$("#sfrm [name=short_name]").val(data.short_name)
+							$("#sfrm [name=month_cash_in]").val(data.month_cash_in)
+							$("#sfrm [name=month_expend_in]").val(data.month_expend_in)
+							$("#sfrm [name=shop_license]").val(data.shop_license)
+							$("#sfrm [name=begin_time]").val(data.begin_time)
+							$("#sfrm [name=end_time]").val(data.end_time)
+							$("#sfrm [name=shop_area]").val(data.shop_area)
+							$("#sfrm [name=shop_project]").val(data.shop_project)
+							$("#sfrm [name=shop_type]").val(data.shop_type)
+							$("#sfrm [name=sort_no]").val(data.sort_no)
+							$("#sfrm [name=shop_phone]").val(data.shop_phone)
+							$("#sfrm [name=shop_address]").val(data.shop_address)
+							$("#sfrm [name=gps_x]").val(data.gps_x)
+							$("#sfrm [name=gps_y]").val(data.gps_y)
+							$("#sfrm [name=shop_remark]").val(data.shop_remark)
+							ue_s.setContent(data.shop_intro)
+							$("#sfrm #shopimageshow").empty()
+							$("#sfrm #shopimageshow").append("<img src="+"http://localhost:8080"+data.shop_image+" width='200px' height='200px' />")
+							$("#sfrm #shopdetailimage").empty()
+							$("#sfrm #shopdetailimage").append("<img src="+"http://localhost:8080"+data.shop_detail_image+" width='200px' height='200px' />")
+							$("#sfrm [name=shop_id]").val(data.shop_id)
+						 },
+						error :function(){
+							alert("请求错误");
+						}
+				 }) 
+			}
+			function updateshop(){
+				var fornum=new FormData($("#sfrm")[0]);
+				$.ajax({
+						 url:"http://localhost:8080/merchatcs/updatebishsop",
+						 type:"post",
+						 data:fornum,
+						 processData: false,
+						 contentType:false,
+						 success: function(data){
+							if(parseInt(data)>0){
+								alert("修改成功")
+							}
+						 },
+						error :function(){
+							alert("请求错误");
+						}
+				 }) 
+			}
+		</script>
+	</body>
+</html>

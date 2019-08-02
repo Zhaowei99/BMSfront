@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link  rel="stylesheet" href="../static/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../static/bootstrap-3.3.7-dist/css/bootstrap-table.min.css" />
+		<script src="../static/bootstrap-3.3.7-dist/js/jquery-3.0.0.js"></script>
+		<script src="../static/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+		<script src="../static/bootstrap-3.3.7-dist/js/bootstrap-table.js"></script>
+	</head>
+	<body>
+
+		<!-- 
+ data-method="post"：请求方式
+ data-show-refresh="true"：刷新按钮
+ data-url="http://127.0.0.1/emp/list"：请求数据url
+ data-field="eid":和查询数据属性名对应
+ data-formatter="changeSex"：格式化该列的值
+   data-query-params="queryParams"：添加自定义请求参数
+    data-toolbar="#toolbar":工具栏用来高级搜索
+	data-side-pagination="server";服务器分页（如果不加就是客户端分页/假分页）
+	 data-pagination="true":客户端分页
+	 data-page-size="2"：每页显示的行数
+	$("#table").bootstrapTable('refresh'):刷新表格
+	RequestBody:封装前台传递的json对象：
+	  
+	requestparams:封装前台传递的字符串类型的值
+	
+	
+ -->
+			<!-- 高级搜索 -->
+			<div id="toolbar">
+				<div class="form-inline" role="form">
+					<div class="form-group">
+						<span>ename </span>
+						<input name="ename" class="form-control" type="text">
+					</div>
+					<div class="form-group">
+						<label class="radio-inline">
+							<input type="radio" name="sex" id="inlineRadio1" value="F"> 男
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="sex" id="inlineRadio2" value="M"> 女
+						</label>
+					</div>
+				</div>
+				<!-- <button id="ok" type="submit" class="btn btn-primary">OK</button> -->
+			</div>
+
+
+
+
+		<!-- 表格 -->
+		<table id="table" 
+		data-toggle="table" 
+		data-method="post" 
+		data-show-refresh="true" 
+		data-toolbar="#toolbar"
+		 data-query-params="queryParams" 
+		 data-pagination="true"
+		 data-page-size="3"
+		 data-url="http://localhost:8080/emp/logs">
+			<thead>
+				<tr>
+					<th data-field="bag_id" data-sortable="true">ID</th>
+					<th data-field="project_id">ename</th>
+					<th data-field="project_old_price" data-formatter="changeSex">sex</th>
+					<th data-field="project_new_price">bdate</th>
+					<th data-field="project_num">city</th>
+					<th data-field="create_time">creat_time</th>
+					<th data-field="create_user_id">user_id</th>
+				</tr>
+			</thead>
+		</table>
+		</div>
+
+		<script>
+			/* 输出性别格式化 
+			function changeSex(value, row) {
+				value = value == 'F' ? "男" : "女";
+				return value;
+			}
+ */
+			/* 添加自定义请求参数*/
+			function queryParams(params) {
+
+				/*
+				 获取表单中的input值，添加进params对象中
+				*/
+				$('#toolbar').find("input[type='text']").each(function() {
+					params[$(this).attr('name')] = $(this).val();
+				});
+				params.sex=$("#toolbar input:checked").val();
+				return params;
+			}
+
+
+			/* ok按钮事件绑定
+			
+
+			$(function() {
+				$("#ok").on('click', function() {
+					$("#table").bootstrapTable('refresh')
+				});
+
+			}); */
+		</script>
+	</body>
+</html>
